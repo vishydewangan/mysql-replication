@@ -1,0 +1,32 @@
+version: "3.0"
+
+services: 
+    master: 
+        image: mysql/mysql-server:5.7.17
+        volumes:
+            - /root/mysql-replication/multi-slave/master/conf:/etc/mysql
+            - /root/mysql-replication/multi-slave/master/data:/var/lib/mysql
+        expose:
+            - "3306"
+        environment: 
+            - MYSQL_ROOT_PASSWORD=123456
+    
+    slave1:
+        image: mysql/mysql-server:5.7.17
+        volumes:
+            - /root/mysql-replication/multi-slave/slave1/conf:/etc/mysql 
+            - /root/mysql-replication/multi-slave/slave1/data:/var/lib/mysql
+        expose:
+            - "3306"    
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
+
+    slave2:
+        image: mysql/mysql-server:5.7.17
+        volumes:
+            - /root/mysql-replication/multi-slave/slave2/conf:/etc/mysql
+            - /root/mysql-replication/multi-slave/slave2/data:/var/lib/mysql
+        expose:
+            - "3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
